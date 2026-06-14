@@ -1,12 +1,12 @@
 name: Deploy to GitHub Pages
 
-# Build, test, and publish the PWA to GitHub Pages on every push to the default
-# branch. Deploy only happens if the e2e tests pass.
+# Build, test, and publish the PWA to GitHub Pages on every push to the dev
+# branch. Deploy only happens if the e2e tests pass. main is intentionally not
+# deployed yet (a formal URL will be set up later).
 on:
   push:
     branches:
       - claude/calorie-tracking-pwa-cu1mlj
-      - main
   workflow_dispatch:
 
 permissions:
