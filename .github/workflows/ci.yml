@@ -1,0 +1,24 @@
+name: CI
+
+# Run the e2e suite on pull requests. Pushes to the default branch are covered
+# by the deploy workflow, which also runs the tests before publishing.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          CI: "1"

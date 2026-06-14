@@ -10,10 +10,14 @@ import { test, expect, type Page } from '@playwright/test';
  */
 
 async function logEntry(page: Page, kcal: string, description: string) {
+  const before = await page.locator('.entry').count();
   await page.click('.log-button');
   await page.fill('.log-form__kcal', kcal);
   if (description) await page.fill('.log-form__desc', description);
   await page.click('.btn--primary');
+  // The list re-renders by reading back from IndexedDB, so waiting for the new
+  // row guarantees the write committed before the next action (e.g. reload).
+  await expect(page.locator('.entry')).toHaveCount(before + 1);
 }
 
 test.beforeEach(async ({ page }) => {
