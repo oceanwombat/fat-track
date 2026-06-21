@@ -50,6 +50,9 @@ jobs:
           # GitHub Pages serves a project repo at /<repo>/, so the bundle,
           # manifest, and service worker scope must be built for that base.
           VITE_BASE: /fat-track/
+          # Free-tier Gemini key for the optional Estimate button. Embedded in the
+          # public bundle by design (free tier = no billing). Unset -> button hidden.
+          VITE_GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -71,6 +71,30 @@ manually from **Actions → Deploy to GitHub Pages → Run workflow**.
 > The app is built with `VITE_BASE=/fat-track/` in CI because Pages serves a
 > project repo from a subpath. Locally it stays at `/` — no action needed.
 
+## Optional: AI calorie estimate (Google Gemini)
+
+The log form has an optional **Estimate** button. It sends the description to
+Google Gemini and suggests a kcal value you can accept (it fills the field) or
+ignore and type your own. It's **advisory and online-only** — it never blocks
+logging, and the button hides itself when no key is configured.
+
+It uses a **free-tier** Gemini key embedded at build time. The free tier has no
+billing, so even though the key ships in the public bundle, a leak can only get
+it rate-limited — never charged.
+
+### Enable it (one-time, from your phone)
+
+1. Get a free key at [aistudio.google.com](https://aistudio.google.com) → **Get
+   API key** (no billing).
+2. (Recommended) In the Google Cloud console, restrict the key: **Application
+   restrictions → HTTP referrers** → `https://oceanwombat.github.io/*`, and
+   **API restrictions → Generative Language API**.
+3. On GitHub: repo **Settings → Secrets and variables → Actions → New repository
+   secret**, name `GEMINI_API_KEY`, value = the key.
+4. Push (or re-run the deploy). The Estimate button appears on the deployed site.
+
+For local dev, put `VITE_GEMINI_API_KEY=...` in `.env.local` (see `.env.example`).
+
 ## Add to iOS Home Screen
 
 Open the deployed URL (`https://oceanwombat.github.io/fat-track/`) in Safari →

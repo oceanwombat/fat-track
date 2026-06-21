@@ -140,6 +140,42 @@ body {
   background: var(--accent);
   color: #fff;
 }
+.btn--estimate {
+  background: var(--surface-2);
+  color: var(--text);
+  align-self: flex-start;
+}
+
+/* Estimate row */
+.estimate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: -2px;
+}
+.estimate__use {
+  padding: 10px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #052e16;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.estimate__note {
+  font-weight: 400;
+  opacity: 0.8;
+}
+.estimate__error {
+  font-size: 13px;
+  color: var(--muted);
+}
 .btn--ghost {
   background: transparent;
   color: var(--muted);

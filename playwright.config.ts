@@ -23,5 +23,8 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    // Dummy key so the Estimate UI renders in tests; the real Gemini endpoint is
+    // intercepted via page.route, so no real network calls are made.
+    env: { ...process.env, VITE_GEMINI_API_KEY: 'test-dummy-key' },
   },
 });
